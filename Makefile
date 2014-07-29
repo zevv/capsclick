@@ -1,6 +1,6 @@
 
-BIN   	= ctrlclick
-SRC 	= ctrlclick.c
+BIN   	= capsclick
+SRC 	= capsclick.c
 
 PKG	+=
 CFLAGS  += -Wall -O3 -g 
