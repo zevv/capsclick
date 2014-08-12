@@ -16,6 +16,7 @@ int main (int argc, char *argv[])
 	Window root = XDefaultRootWindow (dpy);
 
 	XGrabKey(dpy, 66, AnyModifier, root, False, GrabModeAsync, GrabModeAsync);
+	XGrabKey(dpy, 133, AnyModifier, root, False, GrabModeAsync, GrabModeAsync);
 
 	for(;;) {
 
@@ -28,6 +29,15 @@ int main (int argc, char *argv[])
 			}
 			if (ev.type == KeyRelease) {
 				xdo_mouse_up(xdo, CURRENTWINDOW, 1);
+			}
+		}
+		
+		if(ev.xkey.keycode == 133) {
+			if (ev.type == KeyPress) {
+				xdo_mouse_down(xdo, CURRENTWINDOW, 3);
+			}
+			if (ev.type == KeyRelease) {
+				xdo_mouse_up(xdo, CURRENTWINDOW, 3);
 			}
 		}
 	}
