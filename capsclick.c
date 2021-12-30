@@ -16,6 +16,8 @@ int main (int argc, char *argv[])
 	Window root = XDefaultRootWindow (dpy);
 
 	XGrabKey(dpy, 66, AnyModifier, root, False, GrabModeAsync, GrabModeAsync);
+//	XGrabKey(dpy, 105, AnyModifier, root, False, GrabModeAsync, GrabModeAsync);
+//	XGrabKey(dpy, 108, AnyModifier, root, False, GrabModeAsync, GrabModeAsync);
 	XGrabKey(dpy, 133, AnyModifier, root, False, GrabModeAsync, GrabModeAsync);
 
 	for(;;) {
@@ -23,7 +25,9 @@ int main (int argc, char *argv[])
 		XEvent ev;
 		XNextEvent (dpy, &ev);
 
-		if(ev.xkey.keycode == 66) {
+		int c = ev.xkey.keycode;
+
+		if(c == 66 || c == 108) {
 			if (ev.type == KeyPress) {
 				xdo_mouse_down(xdo, CURRENTWINDOW, 1);
 			}
@@ -32,7 +36,7 @@ int main (int argc, char *argv[])
 			}
 		}
 		
-		if(ev.xkey.keycode == 133) {
+		if(c == 133 || c == 105) {
 			if (ev.type == KeyPress) {
 				xdo_mouse_down(xdo, CURRENTWINDOW, 3);
 			}
